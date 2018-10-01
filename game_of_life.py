@@ -20,8 +20,8 @@ next_state = np.empty((HEIGHT,WIDTH), dtype=np.int8)
 ### ランダム ###
 # state = np.random.randint(2, size=(HEIGHT,WIDTH), dtype=np.int8)
 ### game_of_life_patterns.pyの中の各パターンを利用. 左上(2,2)の位置にセットする. ###
-# pattern = game_of_life_patterns.GLIDER_GUN
-pattern = game_of_life_patterns.BITMAP
+pattern = game_of_life_patterns.DOT
+# pattern = game_of_life_patterns.BITMAP
 state[2:2+pattern.shape[0], 2:2+pattern.shape[1]] = pattern
 
 visualizer.update(1 - state) # 1を黒, 0を白で表示する
