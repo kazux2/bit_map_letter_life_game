@@ -2,6 +2,7 @@
 __pycache__/
 venv2/
 
-data/
+data
+!data/not_notMNIST-master/bit_mapper.py
 
 alifebook_lib/

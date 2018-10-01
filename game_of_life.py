@@ -22,7 +22,12 @@ next_state = np.empty((HEIGHT,WIDTH), dtype=np.int8)
 ### game_of_life_patterns.pyの中の各パターンを利用. 左上(2,2)の位置にセットする. ###
 # pattern = game_of_life_patterns.GLIDER_GUN
 pattern = game_of_life_patterns.BITMAP
-state[2:2+pattern.shape[0], 2:2+pattern.shape[1]] = pattern
+bit_map_label_and_img = game_of_life_patterns.bit_map_label_and_img
+
+# state[2:2+pattern.shape[0], 2:2+pattern.shape[1]] = pattern
+num_points = len(bit_map_label_and_img['labels'])
+idx = np.random.randint(num_points)
+state[2:2+pattern.shape[0], 2:2+pattern.shape[1]] = bit_map_label_and_img['images'][idx]
 
 visualizer.update(1 - state) # 1を黒, 0を白で表示する
 # visualizer.update(state)
@@ -62,7 +67,6 @@ while visualizer:  # visualizerはウィンドウが閉じられるとFalseを�
                 next_state[i,j] = 1
             else:
                 next_state[i,j] = 0
-            print(next_state.shape, i,j)
 
 
 
@@ -70,7 +74,9 @@ while visualizer:  # visualizerはウィンドウが閉じられるとFalseを�
     import random
     # if count in varied_step_range(0,100, [i for i in range(100)]):
     if random.randint(0,9) % 4 == 0:
-        next_state[2:2 + pattern.shape[0], 2:2 + pattern.shape[1]] = next_state[2:2 + pattern.shape[0], 2:2 + pattern.shape[1]] + pattern
+        idx = np.random.randint(num_points)
+        next_state[2:2 + pattern.shape[0], 2:2 + pattern.shape[1]] = next_state[2:2 + pattern.shape[0], 2:2 + pattern.shape[1]]\
+                                                                     + bit_map_label_and_img['images'][idx]
 
     state, next_state = next_state, state
 

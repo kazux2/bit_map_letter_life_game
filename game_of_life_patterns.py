@@ -38,3 +38,6 @@ import pickle
 with open('data/a_charactor_bim.pickle', "rb") as f:
  BITMAP = pickle.load(f)
 
+with open('data/not_notMNIST-master/small_trial/kanjis/28x28bit_map_label_and_img.pickle', "rb") as f:
+ bit_map_label_and_img = pickle.load(f)
+
