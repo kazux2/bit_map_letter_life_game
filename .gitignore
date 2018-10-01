@@ -2,7 +2,10 @@
 __pycache__/
 venv2/
 
+outputs
+
 data
 !data/not_notMNIST-master/bit_mapper.py
 
-alifebook_lib/
+alifebook_lib
+!alifebook_lib/visualizers/matrix_visualizer.py

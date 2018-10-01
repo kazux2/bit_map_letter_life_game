@@ -32,6 +32,8 @@ GLIDER_GUN = np.array(
  [0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
  [0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]])
 
+DOT = np.array([[1]])
+
 import pickle
 # with open("binary_img_PixelMplus_344.pickle", "rb") as f:
 # with open("binary_img_misaki_gothic.pickle", "rb") as f:

@@ -8,6 +8,7 @@ from alifebook_lib.visualizers import MatrixVisualizer
 import game_of_life_patterns
 
 import time
+import cv2
 
 from letter import Letter
 
@@ -35,14 +36,23 @@ next_state = np.empty((HEIGHT,WIDTH), dtype=np.int8)
 # 初期化
 bit_map_label_and_img = game_of_life_patterns.bit_map_label_and_img
 
-l1_h_rand = gen_rands()
-l1_w_rand = gen_rands()
-l2_h_rand = gen_rands()
-l2_w_rand = gen_rands()
-l3_h_rand = gen_rands()
-l3_w_rand = gen_rands()
-l4_h_rand = gen_rands()
-l4_w_rand = gen_rands()
+# l1_h_rand = gen_rands()
+# l1_w_rand = gen_rands()
+# l2_h_rand = gen_rands()
+# l2_w_rand = gen_rands()
+# l3_h_rand = gen_rands()
+# l3_w_rand = gen_rands()
+# l4_h_rand = gen_rands()
+# l4_w_rand = gen_rands()
+
+l1_h_rand = 0
+l1_w_rand = 0
+l2_h_rand = 0
+l2_w_rand = 0
+l3_h_rand = 0
+l3_w_rand = 0
+l4_h_rand = 0
+l4_w_rand = 0
 
 state[5 + l1_h_rand: 5 + l1_h_rand + letter_height, 5 + l1_w_rand: 5 + l1_w_rand + letter_width] = l1.next()
 state[5 + l2_h_rand: 5 + l2_h_rand + letter_height, 35 + l2_w_rand: 35 + l2_w_rand + letter_width] = l2.next()
@@ -60,6 +70,7 @@ def varied_step_range(start,stop,stepiter):
     while start < stop:
         yield start
         start += next(step)
+
 
 
 count = 0
@@ -91,14 +102,23 @@ while visualizer:  # visualizerはウィンドウが閉じられるとFalseを�
 
 
     count += 1
-    l1_h_rand = gen_rands()
-    l1_w_rand = gen_rands()
-    l2_h_rand = gen_rands()
-    l2_w_rand = gen_rands()
-    l3_h_rand = gen_rands()
-    l3_w_rand = gen_rands()
-    l4_h_rand = gen_rands()
-    l4_w_rand = gen_rands()
+    # l1_h_rand = gen_rands()
+    # l1_w_rand = gen_rands()
+    # l2_h_rand = gen_rands()
+    # l2_w_rand = gen_rands()
+    # l3_h_rand = gen_rands()
+    # l3_w_rand = gen_rands()
+    # l4_h_rand = gen_rands()
+    # l4_w_rand = gen_rands()
+
+    l1_h_rand = 0
+    l1_w_rand = 0
+    l2_h_rand = 0
+    l2_w_rand = 0
+    l3_h_rand = 0
+    l3_w_rand = 0
+    l4_h_rand = 0
+    l4_w_rand = 0
 
     if np.random.randint(1,11) % 4 == 0:  # 70%の割合で文字を再注入
         next_state[5 + l1_h_rand: 5 + l1_h_rand + letter_height, 5 + l1_w_rand: 5 + l1_w_rand+ letter_width] \
@@ -120,4 +140,13 @@ while visualizer:  # visualizerはウィンドウが閉じられるとFalseを�
     state, next_state = next_state, state
 
     # 表示をアップデート
-    visualizer.update(1-state) # 1を黒, 0を白で表示する
+    visualizer.update(1 - state) # 1を黒, 0を白で表示する
+    print(visualizer.render().shape)
+
+    cv2.imshow('frame', visualizer.render())
+
+
+
+# Release everything if job is finished
+
+cv2.destroyAllWindows()
