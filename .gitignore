@@ -4,8 +4,12 @@ venv2/
 
 outputs
 
-data
-!data/not_notMNIST-master/bit_mapper.py
+/data/*
+!/data/not_notMNIST-master
+/data/not_notMNIST-master/*
+!/data/not_notMNIST-master/bit_mapper.py
 
-alifebook_lib
-!alifebook_lib/visualizers/matrix_visualizer.py
+/alifebook_lib/*
+!/alifebook_lib/visualizers
+/alifebook_lib/visualizers/*
+!/alifebook_lib/visualizers/matrix_visualizer.py
