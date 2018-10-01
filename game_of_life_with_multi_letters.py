@@ -7,32 +7,52 @@ import numpy as np
 from alifebook_lib.visualizers import MatrixVisualizer
 import game_of_life_patterns
 
-WIDTH = 500
-HEIGHT = 500
+import time
+
+from letter import Letter
+
+
+HEIGHT = 70
+WIDTH = 70
+
+l1 = Letter()
+l2 = Letter()
+l3 = Letter()
+l4 = Letter()
+
+def gen_rands():
+    return np.random.randint(-5, 6)
+
+letter_height = l1.current_letter.shape[0]
+letter_width = l1.current_letter.shape[1]
 
 # visualizerの初期化 (Appendix参照)
-visualizer = MatrixVisualizer(width=WIDTH, height=HEIGHT)
+visualizer = MatrixVisualizer(width=WIDTH*5, height=HEIGHT*5)
 
 state = np.zeros((HEIGHT,WIDTH), dtype=np.int8)
 next_state = np.empty((HEIGHT,WIDTH), dtype=np.int8)
 
 # 初期化
-### ランダム ###
-# state = np.random.randint(2, size=(HEIGHT,WIDTH), dtype=np.int8)
-### game_of_life_patterns.pyの中の各パターンを利用. 左上(2,2)の位置にセットする. ###
-# pattern = game_of_life_patterns.GLIDER_GUN
-pattern = game_of_life_patterns.BITMAP
 bit_map_label_and_img = game_of_life_patterns.bit_map_label_and_img
 
-# state[2:2+pattern.shape[0], 2:2+pattern.shape[1]] = pattern
-num_points = len(bit_map_label_and_img['labels'])
-idx = np.random.randint(num_points)
-state[2:2+pattern.shape[0], 2:2+pattern.shape[1]] = bit_map_label_and_img['images'][idx]
+l1_h_rand = gen_rands()
+l1_w_rand = gen_rands()
+l2_h_rand = gen_rands()
+l2_w_rand = gen_rands()
+l3_h_rand = gen_rands()
+l3_w_rand = gen_rands()
+l4_h_rand = gen_rands()
+l4_w_rand = gen_rands()
+
+state[5 + l1_h_rand: 5 + l1_h_rand + letter_height, 5 + l1_w_rand: 5 + l1_w_rand + letter_width] = l1.next()
+state[5 + l2_h_rand: 5 + l2_h_rand + letter_height, 35 + l2_w_rand: 35 + l2_w_rand + letter_width] = l2.next()
+state[35 + l3_h_rand: 35 + l3_h_rand + letter_height, 5 + l3_w_rand: 5 + l3_w_rand + letter_width] = l3.next()
+state[35 + l4_h_rand: 35 + l4_h_rand + letter_height, 35 + l4_w_rand: 35 + l4_w_rand + letter_width] = l4.next()
 
 visualizer.update(1 - state) # 1を黒, 0を白で表示する
 # visualizer.update(state)
 
-import time
+
 time.sleep(5)
 
 def varied_step_range(start,stop,stepiter):
@@ -71,12 +91,31 @@ while visualizer:  # visualizerはウィンドウが閉じられるとFalseを�
 
 
     count += 1
-    import random
-    # if count in varied_step_range(0,100, [i for i in range(100)]):
-    if random.randint(0,9) % 4 == 0:
-        idx = np.random.randint(num_points)
-        next_state[2:2 + pattern.shape[0], 2:2 + pattern.shape[1]] = next_state[2:2 + pattern.shape[0], 2:2 + pattern.shape[1]]\
-                                                                     + bit_map_label_and_img['images'][idx]
+    l1_h_rand = gen_rands()
+    l1_w_rand = gen_rands()
+    l2_h_rand = gen_rands()
+    l2_w_rand = gen_rands()
+    l3_h_rand = gen_rands()
+    l3_w_rand = gen_rands()
+    l4_h_rand = gen_rands()
+    l4_w_rand = gen_rands()
+
+    if np.random.randint(1,11) % 4 == 0:  # 70%の割合で文字を再注入
+        next_state[5 + l1_h_rand: 5 + l1_h_rand + letter_height, 5 + l1_w_rand: 5 + l1_w_rand+ letter_width] \
+            = next_state[5 + l1_h_rand: 5 + l1_h_rand + letter_height, 5 + l1_w_rand: 5 + l1_w_rand+ letter_width] + l1.next()
+
+    if np.random.randint(1, 11) % 4 == 0:  # 70%の割合で文字を再注入
+        next_state[5 + l2_h_rand: 5 + l2_h_rand + letter_height, 35 + l2_w_rand: 35 + l2_w_rand + letter_width] \
+            += l2.next()
+
+    if np.random.randint(1, 11) % 4 == 0:  # 70%の割合で文字を再注入
+        next_state[35 + l3_h_rand: 35 + l3_h_rand + letter_height, 5 + l3_w_rand: 5 + l3_w_rand + letter_width] \
+            += l3.next()
+
+    if np.random.randint(1, 11) % 4 == 0:  # 70%の割合で文字を再注入
+        next_state[35 + l4_h_rand: 35 + l4_h_rand + letter_height, 35 + l4_w_rand: 35 + l4_w_rand + letter_width] \
+            += l4.next()
+
 
     state, next_state = next_state, state
 
