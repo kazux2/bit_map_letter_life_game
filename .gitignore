@@ -8,6 +8,7 @@ outputs
 !/data/not_notMNIST-master
 /data/not_notMNIST-master/*
 !/data/not_notMNIST-master/bit_mapper.py
+!/data/not_notMNIST-master/pickle_merger.py
 
 /alifebook_lib/*
 !/alifebook_lib/visualizers

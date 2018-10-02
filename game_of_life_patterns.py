@@ -41,6 +41,32 @@ import pickle
 with open('data/a_charactor_bim.pickle', "rb") as f:
  BITMAP = pickle.load(f)
 
-with open('data/not_notMNIST-master/small_trial/kanjis/28x28bit_map_label_and_img.pickle', "rb") as f:
+with open('data/not_notMNIST/small_trial/kanjis/28x28bit_map_label_and_img.pickle', "rb") as f:
  bit_map_label_and_img = pickle.load(f)
+
+
+with open('data/not_notMNIST/2018summer_art_project/numbers/28x28bit_mapped_thresh50.pickle', "rb") as f:
+ SCENE2NUM_S50 = pickle.load(f)
+
+with open('data/not_notMNIST/2018summer_art_project/numbers/28x28bit_mapped_thresh150.pickle', "rb") as f:
+ SCENE2NUM_S150 = pickle.load(f)
+
+with open('data/not_notMNIST/2018summer_art_project/numbers/28x28bit_mapped_thresh250.pickle', "rb") as f:
+ SCENE2NUM_S250 = pickle.load(f)
+
+
+with open('data/not_notMNIST/2018summer_art_project/a_to_z/28x28bit_map_label_and_img.pickle', "rb") as f:
+ SCENE3ALPHABET = pickle.load(f)
+
+with open('data/not_notMNIST/2018summer_art_project/kana/28x28bit_map_label_and_img.pickle', "rb") as f:
+ SCENE4KANA = pickle.load(f)
+
+with open('data/not_notMNIST/2018summer_art_project/kanji_small/28x28bit_map_label_and_img.pickle', "rb") as f:
+ SCENE5KANJI = pickle.load(f)
+
+
+with open('data/not_notMNIST/2018summer_art_project/merged_pickle/number_and_a_to_z.pickle', "rb") as f:
+ MERGED_TEST = pickle.load(f)
+
+
 

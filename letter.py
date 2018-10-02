@@ -4,12 +4,13 @@ import game_of_life_patterns
 
 class Letter:
 
-	letters = game_of_life_patterns.bit_map_label_and_img["images"]
-	letters_len = len(letters)
 	current_letter_index = 0
 	current_letter_times = 0
 
-	current_letter = letters[current_letter_index]
+	def __init__(self, bit_map_label_and_img):
+		self.letters = bit_map_label_and_img["images"]
+		self.letters_len = len(self.letters)
+		self.current_letter = self.letters[self.current_letter_index]
 
 	def is_continue(self):
 		'''
