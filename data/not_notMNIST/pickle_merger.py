@@ -8,11 +8,10 @@ import matplotlib.pyplot as plt
 
 # not_notMNISTのpickle(python2, 0 ~ 255のグレースケールのリスト + 文字ラベル)をpython3,bitmap(0 ~ 1)のpickleに変換するスクリプト
 
-pkl_path1 = '2018summer_art_project/numbers/28x28bit_mapped_thresh250.pickle'
-pkl_path2 = '2018summer_art_project/a_to_z/28x28bit_map_label_and_img.pickle'
+pkl_path1 = '2018summer_art_project/merged_pickle/number_and_a_to_z_and_kana.pickle'
+pkl_path2 = '2018summer_art_project/kanji_small/28x28bit_map_label_and_img.pickle'
 
-threshold = 250
-save_path = '2018summer_art_project/merged_pickle/number_and_a_to_z.pickle'.format(threshold)
+save_path = '2018summer_art_project/merged_pickle/number_and_a_to_z_and_kana_and_kanji.pickle'
 
 with open(pkl_path1, 'rb') as f:
 	grayscale_label_and_img = pickle.load(f, encoding='latin1')

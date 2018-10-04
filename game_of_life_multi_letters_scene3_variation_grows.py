@@ -21,15 +21,16 @@ visualizer = MatrixVisualizer(width=WIDTH*10, height=HEIGHT*10)
 print('resolution:', visualizer.render().shape)
 
 # 録画の設定
-file_name = "scene2_numbers_thresh250"
+file_name = "scene3_variation_grows_1_toKanji"
 
 fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # SEE: https://gist.github.com/takuma7/44f9ecb028ff00e2132e
 out = cv2.VideoWriter('outputs/2018summer_art_project/{}.mp4'.format(file_name),fourcc, 30, (700, 400))
 
+
 # 初期化
-# bit_map_label_and_img = game_of_life_patterns.SCENE2NUM_TH50
-# bit_map_label_and_img = game_of_life_patterns.SCENE2NUM_TH150
-bit_map_label_and_img = game_of_life_patterns.SCENE2NUM_TH250
+# bit_map_label_and_img = game_of_life_patterns.NUM_ALPH
+# bit_map_label_and_img = game_of_life_patterns.NUM_ALPH_KANA
+bit_map_label_and_img = game_of_life_patterns.NUM_ALPH_KANA_KANJI
 
 l1 = Letter(bit_map_label_and_img)
 l2 = Letter(bit_map_label_and_img)
@@ -53,6 +54,7 @@ count = 0
 while visualizer:  # visualizerはウィンドウが閉じられるとFalseを返す
     # time.sleep(0.1)
     print(count)
+
     for i in range(HEIGHT):
         for j in range(WIDTH):
 
@@ -110,7 +112,6 @@ while visualizer:  # visualizerはウィンドウが閉じられるとFalseを�
 
     if count > 1000:
         break
-
 
 
 # Release everything if job is finished

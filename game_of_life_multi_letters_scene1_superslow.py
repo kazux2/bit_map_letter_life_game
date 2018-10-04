@@ -4,6 +4,7 @@
 import sys, os
 sys.path.append(os.pardir)  # 親ディレクトリのファイルをインポートするための設定
 import numpy as np
+np.set_printoptions(threshold=np.nan)
 from alifebook_lib.visualizers import MatrixVisualizer
 import game_of_life_patterns
 
@@ -20,17 +21,21 @@ WIDTH = 70
 visualizer = MatrixVisualizer(width=WIDTH*10, height=HEIGHT*10)
 print('resolution:', visualizer.render().shape)
 
+# 録画の設定
+fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # SEE: https://gist.github.com/takuma7/44f9ecb028ff00e2132e
+out = cv2.VideoWriter('outputs/2018summer_art_project/scene1_breathing_dot_num500.mp4',fourcc, 30, (700, 400))
 
 state = np.zeros((HEIGHT,WIDTH), dtype=np.int8)
 next_state = np.empty((HEIGHT,WIDTH), dtype=np.int8)
 
 
 from breathing_dot import BreathingDot
-# 初期化
-# dot = game_of_life_patterns.DOT
-dot_num = 50
+
+dot_num = 500
 coordinates = [[np.random.randint(0,71), np.random.randint(0,41)] for i in range(0,dot_num)]
+
 dots = {}
+
 for i in range(0,dot_num):
     b = BreathingDot()
     dots[str(i)] = [coordinates[i],b]
@@ -41,7 +46,7 @@ for key, value in dots.items():
     state[coor[1]:coor[1]+1, coor[0]:coor[0]+1] = b.next()
 
 visualizer.update(1 - state) # 1を黒, 0を白で表示する
-# visualizer.update(state)
+
 
 
 time.sleep(1)
@@ -68,9 +73,17 @@ while visualizer:  # visualizerはウィンドウが閉じられるとFalseを�
     # 表示をアップデート
     visualizer.update(1 - state) # 1を黒, 0を白で表示する
 
+    # 録画
+    frame = visualizer.render()
+    frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGRA2BGR)
+    print(frame_rgb.shape)
+    out.write(frame_rgb)
 
-    # cv2.imshow('frame', visualizer.render())
+    if count > 100000:
+        break
+
+
 
 # Release everything if job is finished
-
+out.release()
 cv2.destroyAllWindows()

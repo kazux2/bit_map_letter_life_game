@@ -17,7 +17,7 @@ class BreathingDot:
 			self.living_time += 1
 
 			if self.living_time >= self.life_limit:
-				self.life_limit = np.random.randint(50, 500)  # 次のライフタイムをセット
+				self.life_limit = np.random.randint(25, 100)  # 次のライフタイムをセット
 				self.life_status = 0  # kill
 				self.living_time = 0
 
